@@ -8,3 +8,6 @@ grpc
 
 schema.gql
 .env
+
+jwt-private.key
+jwt-public.key
