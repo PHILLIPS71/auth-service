@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "generated/prisma"
+}
+
+generator typegraphql {
+  provider = "node ./node_modules/typegraphql-prisma/generator.js"
+  output   = "generated/type-graphql"
+}
+
+enum TokenType {
+  REFRESH_TOKEN
+}
+
+model UserAgent {
+  id               String   @default(cuid()) @id
+  ip               String
+  raw              String
+  browser          String?
+  browser_version  String?
+  platform         String?
+  platform_version String?
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+  token            Token[]
+}
+
+model Token {
+  id            String    @default(cuid()) @id
+  user_id       String
+  type          TokenType
+  token         String    @unique
+  user_agent    UserAgent @relation(fields: user_agent_id, references: [id])
+  user_agent_id String
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
+}
