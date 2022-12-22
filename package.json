@@ -16,7 +16,7 @@
     "graphql": "15.1.0",
     "graphql-fields": "^2.0.3",
     "graphql-type-json": "^0.3.2",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "koa": "^2.13.0",
     "lodash": "^4.17.19",
     "ms": "^2.1.2",
